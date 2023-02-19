@@ -18,7 +18,7 @@ models = {
 def import_img(file_name:str):
     return tf.io.read_file(file_name)
 
-def load_model(model_name:str):
+def load_model_tf(model_name:str):
     return tf.keras.models.load_model(model_name), model_name
 
 def load_model_onnx_as_tf(model_name:str):
@@ -65,7 +65,7 @@ def adjust_channels(img):
 
 if __name__ == '__main__':
     img_depth = import_img(input_img_name)
-    model, model_used = load_model(models["styria_h5"])
+    model, model_used = load_model_tf(models["styria_h5"])
     img_depth_converted = convert_data_tf(img_depth)
     img_sat = gen_image_tf(model, img_depth_converted)
 
